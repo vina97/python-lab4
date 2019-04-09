@@ -6,7 +6,7 @@ from telegram.ext import MessageHandler
 from telegram.ext import Filters
 import pymysql
 
-updater = Updater('759057057:AAFdDmr2PEbO6QSkvfhMf5KKqcIyPBrj0g8')
+updater = Updater(token)
 dispatcher = updater.dispatcher
 
 
@@ -18,7 +18,7 @@ def start(bot, update):
 
 def showTasks(bot, update):
     sql = "SELECT  todo  FROM task_1 order by todo"
-    conn = pymysql.connect(user='root', password='MarcoVinai97', host='localhost', database='tasks')
+    conn = pymysql.connect(user='root', password='xxx', host='localhost', database='tasks')
     cursor = conn.cursor()
     cursor.execute(sql)
     res = cursor.fetchall()
@@ -36,7 +36,7 @@ def newTask(bot, update, args):
     task = ' '.join(args)
     sql = "INSERT INTO task_1 (id_task, todo) values (%s, %s)"
     sql2 = "SELECT COUNT(*) from task_1"
-    conn = pymysql.connect(user='root', password='MarcoVinai97', host='localhost', database='tasks')
+    conn = pymysql.connect(user='root', password='xxx', host='localhost', database='tasks')
     cursor = conn.cursor()
     cursor.execute(sql2)
     n = cursor.fetchone()
@@ -51,7 +51,7 @@ def removeTask(bot, update, args):
     task = ' '.join(args)
     sql1 = "SELECT * FROM task_1 WHERE todo = %s"
     sql2 = "DELETE FROM task_1 WHERE todo = %s and id_task = %s"
-    conn = pymysql.connect(user='root', password='MarcoVinai97', host='localhost', database='tasks')
+    conn = pymysql.connect(user='root', password='xxx', host='localhost', database='tasks')
     cursor = conn.cursor()
     cursor.execute(sql1, ("task",))
     a = cursor.fetchone()
@@ -70,7 +70,7 @@ def removeAllTasks(bot, update, args):
     t = "%" + t + "%"
     sql1 = "SELECT * FROM task_1 WHERE todo LIKE %s"
     sql2 = "DELETE FROM task_1 WHERE todo LIKE %s "
-    conn = pymysql.connect(user='root', password='MarcoVinai97', host='localhost', database='tasks')
+    conn = pymysql.connect(user='root', password='xxx', host='localhost', database='tasks')
     cursor = conn.cursor()
     cursor2 = conn.cursor()
     cursor.execute(sql1, (t,))
