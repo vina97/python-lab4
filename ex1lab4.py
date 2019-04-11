@@ -53,7 +53,7 @@ def removeTask(bot, update, args):
     sql2 = "DELETE FROM task_1 WHERE todo = %s and id_task = %s"
     conn = pymysql.connect(user='root', password='xxx', host='localhost', database='tasks')
     cursor = conn.cursor()
-    cursor.execute(sql1, ("task",))
+    cursor.execute(sql1, (task,))
     a = cursor.fetchone()
     if a == "none":
         bot.send_message(chat_id=update.message.chat_id, text="task not found!")
